@@ -1,4 +1,9 @@
 export type IpcMainToRender = {
-  sample: (test: string, count: number) => void;
+  sample: (text: string, count: number) => void;
 };
 export type IpcMainToRenderKey = keyof IpcMainToRender;
+
+export type IpcRenderToMain = {
+  sample: (count: number, text: string) => void;
+};
+export type IpcRenderToMainKey = keyof IpcRenderToMain;

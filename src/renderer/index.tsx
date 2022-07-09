@@ -13,10 +13,14 @@ window.electron.ipcRenderer.once('ipc-example', arg => {
 });
 window.electron.ipcRenderer.sendMessage('ipc-example', ['ping']);
 
-const subsc = RenderMessenger.on('sample', (test, count) => {
-  console.log('sample', test);
+const subsc = RenderMessenger.on('sample', (text, count) => {
+  console.log('sample', text);
   console.log('sample', count);
 });
+
+setInterval(() => {
+  RenderMessenger.send('sample', 995, 'renderToMain');
+}, 5000);
 
 setTimeout(() => {
   if (subsc !== undefined) {
