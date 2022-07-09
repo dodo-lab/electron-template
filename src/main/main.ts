@@ -130,6 +130,13 @@ app
       console.log('once', text);
     });
 
+    MainMessenger.handle('sample', (event, flag, count) => {
+      console.log('handle', flag);
+      console.log('handle', count);
+
+      return Promise.resolve('invoke OK');
+    });
+
     setTimeout(sampleUnsubscribe, 1000 * 20);
   })
   .catch(console.log);

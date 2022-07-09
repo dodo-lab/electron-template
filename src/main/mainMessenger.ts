@@ -1,5 +1,12 @@
-import {IpcMainToRender, IpcMainToRenderKey, IpcRenderToMain, IpcRenderToMainKey} from 'common/ipc';
-import {BrowserWindow, ipcMain, IpcMainEvent} from 'electron';
+import {
+  IpcMainToRender,
+  IpcMainToRenderKey,
+  IpcRenderToMain,
+  IpcRenderToMainInvoke,
+  IpcRenderToMainInvokeKey,
+  IpcRenderToMainKey,
+} from 'common/ipc';
+import {BrowserWindow, ipcMain, IpcMainEvent, IpcMainInvokeEvent} from 'electron';
 
 export abstract class MainMessenger {
   private static mainWindow: BrowserWindow | null = null;
@@ -25,5 +32,16 @@ export abstract class MainMessenger {
     callback: (event: IpcMainEvent, args: Parameters<IpcRenderToMain[T]>) => void,
   ) {
     ipcMain.once(key, callback);
+  }
+
+  static handle<T extends IpcRenderToMainInvokeKey>(
+    key: T,
+    callback: (
+      event: IpcMainInvokeEvent,
+      ...args: Parameters<IpcRenderToMainInvoke[T]>
+    ) => ReturnType<IpcRenderToMainInvoke[T]>,
+  ) {
+    // @ts-ignore
+    ipcMain.handle(key, callback);
   }
 }

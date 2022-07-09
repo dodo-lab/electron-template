@@ -1,4 +1,4 @@
-import {IpcMainToRenderKey, IpcRenderToMainKey} from 'common/ipc';
+import {IpcMainToRenderKey, IpcRenderToMainInvokeKey, IpcRenderToMainKey} from 'common/ipc';
 import {contextBridge, ipcRenderer, IpcRendererEvent} from 'electron';
 
 export type Channels = 'ipc-example';
@@ -19,6 +19,9 @@ contextBridge.exposeInMainWorld('electron', {
     },
     once(channel: IpcMainToRenderKey, func: (...args: any[]) => void) {
       ipcRenderer.once(channel, (_event, ...args) => func(...args));
+    },
+    invoke(channel: IpcRenderToMainInvokeKey, ...args: any[]) {
+      return ipcRenderer.invoke(channel, ...args);
     },
   },
 });

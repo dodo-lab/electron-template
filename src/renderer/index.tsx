@@ -33,3 +33,8 @@ setTimeout(() => {
     subsc();
   }
 }, 1000 * 100);
+
+setTimeout(async () => {
+  const text = await RenderMessenger.invoke('sample', true, 555);
+  console.log('invoke', text);
+}, 800);
