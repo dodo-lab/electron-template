@@ -10,6 +10,7 @@
  */
 import {app, BrowserWindow, ipcMain, shell} from 'electron';
 import path from 'path';
+import {MainMessenger} from './mainMessenger';
 import MenuBuilder from './menu';
 import {resolveHtmlPath} from './util';
 
@@ -67,6 +68,8 @@ const createWindow = async () => {
       preload: app.isPackaged ? path.join(__dirname, 'preload.js') : path.join(__dirname, '../../.erb/dll/preload.js'),
     },
   });
+
+  MainMessenger.init(mainWindow);
 
   mainWindow.loadURL(resolveHtmlPath('index.html'));
 
