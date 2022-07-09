@@ -19,4 +19,11 @@ export abstract class MainMessenger {
     ipcMain.on(key, callback);
     return () => ipcMain.removeListener(key, callback);
   }
+
+  static once<T extends IpcRenderToMainKey>(
+    key: T,
+    callback: (event: IpcMainEvent, args: Parameters<IpcRenderToMain[T]>) => void,
+  ) {
+    ipcMain.once(key, callback);
+  }
 }

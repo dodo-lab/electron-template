@@ -125,6 +125,11 @@ app
       console.log('on', text);
     });
 
+    MainMessenger.once('sample', (event, [count, text]) => {
+      console.log('once', count);
+      console.log('once', text);
+    });
+
     setTimeout(sampleUnsubscribe, 1000 * 20);
   })
   .catch(console.log);
