@@ -1,5 +1,4 @@
 import {app, BrowserWindow, dialog, Menu, MenuItemConstructorOptions} from 'electron';
-import {MainMessenger} from './mainMessenger';
 import {isMac, macOrOther} from './utils/platform';
 
 export default class MenuBuilder {
@@ -76,12 +75,6 @@ export default class MenuBuilder {
                   dialog.showErrorBox('エラー', 'データの読み込みに失敗しました');
                 }
               }
-            },
-          },
-          {
-            label: MenuBuilder.label('Test'),
-            click: async () => {
-              MainMessenger.send('sample', 'testTitle', 99);
             },
           },
           ...(isMac

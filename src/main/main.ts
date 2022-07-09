@@ -113,24 +113,5 @@ app
       // dock icon is clicked and there are no other windows open.
       if (mainWindow === null) createWindow();
     });
-
-    const sampleUnsubscribe = MainMessenger.on('sample', (event, [count, text]) => {
-      console.log('on', count);
-      console.log('on', text);
-    });
-
-    MainMessenger.once('sample', (event, [count, text]) => {
-      console.log('once', count);
-      console.log('once', text);
-    });
-
-    MainMessenger.handle('sample', (event, flag, count) => {
-      console.log('handle', flag);
-      console.log('handle', count);
-
-      return Promise.resolve('invoke OK');
-    });
-
-    setTimeout(sampleUnsubscribe, 1000 * 20);
   })
   .catch(console.log);
