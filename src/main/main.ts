@@ -8,10 +8,10 @@
  * When running `npm run build` or `npm run build:main`, this file is compiled to
  * `./src/main.js` using webpack. This gives us some performance wins.
  */
-import { app, BrowserWindow, ipcMain, shell } from 'electron';
+import {app, BrowserWindow, ipcMain, shell} from 'electron';
 import path from 'path';
 import MenuBuilder from './menu';
-import { resolveHtmlPath } from './util';
+import {resolveHtmlPath} from './util';
 
 let mainWindow: BrowserWindow | null = null;
 
@@ -26,8 +26,7 @@ if (process.env.NODE_ENV === 'production') {
   sourceMapSupport.install();
 }
 
-const isDebug =
-  process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true';
+const isDebug = process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true';
 
 if (isDebug) {
   require('electron-debug')();
@@ -40,8 +39,8 @@ const installExtensions = async () => {
 
   return installer
     .default(
-      extensions.map((name) => installer[name]),
-      forceDownload
+      extensions.map(name => installer[name]),
+      forceDownload,
     )
     .catch(console.log);
 };
@@ -65,9 +64,7 @@ const createWindow = async () => {
     height: 728,
     icon: getAssetPath('icon.png'),
     webPreferences: {
-      preload: app.isPackaged
-        ? path.join(__dirname, 'preload.js')
-        : path.join(__dirname, '../../.erb/dll/preload.js'),
+      preload: app.isPackaged ? path.join(__dirname, 'preload.js') : path.join(__dirname, '../../.erb/dll/preload.js'),
     },
   });
 
@@ -92,9 +89,9 @@ const createWindow = async () => {
   menuBuilder.buildMenu();
 
   // Open urls in the user's browser
-  mainWindow.webContents.setWindowOpenHandler((edata) => {
+  mainWindow.webContents.setWindowOpenHandler(edata => {
     shell.openExternal(edata.url);
-    return { action: 'deny' };
+    return {action: 'deny'};
   });
 };
 
