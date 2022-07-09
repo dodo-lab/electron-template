@@ -17,7 +17,7 @@ contextBridge.exposeInMainWorld('electron', {
 
       return () => ipcRenderer.removeListener(channel, subscription);
     },
-    once(channel: Channels, func: (...args: unknown[]) => void) {
+    once(channel: IpcMainToRenderKey, func: (...args: any[]) => void) {
       ipcRenderer.once(channel, (_event, ...args) => func(...args));
     },
   },

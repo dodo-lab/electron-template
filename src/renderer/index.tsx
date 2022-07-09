@@ -18,6 +18,11 @@ const subsc = RenderMessenger.on('sample', (text, count) => {
   console.log('sample', count);
 });
 
+RenderMessenger.once('sample', (text, count) => {
+  console.log('once', text);
+  console.log('once', count);
+});
+
 setInterval(() => {
   RenderMessenger.send('sample', 995, 'renderToMain');
 }, 5000);

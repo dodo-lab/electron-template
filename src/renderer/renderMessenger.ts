@@ -8,4 +8,8 @@ export abstract class RenderMessenger {
   static on<T extends IpcMainToRenderKey>(key: T, callback: IpcMainToRender[T]) {
     return window.electron.ipcRenderer.on(key, callback);
   }
+
+  static once<T extends IpcMainToRenderKey>(key: T, callback: IpcMainToRender[T]) {
+    window.electron.ipcRenderer.once(key, callback);
+  }
 }

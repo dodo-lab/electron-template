@@ -8,7 +8,7 @@ declare global {
         sendMessage(channel: Channels, args: unknown[]): void;
         send(channel: IpcRenderToMainKey, args: unknown[]): void;
         on(channel: IpcMainToRenderKey, func: (...args: any[]) => void): (() => void) | undefined;
-        once(channel: string, func: (...args: unknown[]) => void): void;
+        once(channel: IpcMainToRenderKey, func: (...args: any[]) => void): void;
       };
     };
   }
