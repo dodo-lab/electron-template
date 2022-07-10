@@ -10,6 +10,7 @@ module.exports = {
     'import/no-extraneous-dependencies': 'off',
     'import/no-unresolved': 'error',
     'import/prefer-default-export': 'off',
+    'import/order': 'warn',
     // Since React 17 and typescript 4.1 you can safely disable the rule
     'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/ban-ts-comment': 'off',
@@ -31,6 +32,11 @@ module.exports = {
         {
           module: 'electron',
           allowReferenceFrom: [...path('src/main')],
+          allowSameModule: true,
+        },
+        {
+          module: 'electron-store',
+          allowReferenceFrom: [...path('src/main/config')],
           allowSameModule: true,
         },
       ],

@@ -10,6 +10,7 @@
  */
 import {app, BrowserWindow, shell} from 'electron';
 import path from 'path';
+import {loadConfig, saveConfig} from './config';
 import {MainMessenger} from './mainMessenger';
 import MenuBuilder from './menu';
 import {resolveHtmlPath} from './utils/resolveHtmlPath';
@@ -53,10 +54,11 @@ const createWindow = async () => {
     return path.join(RESOURCES_PATH, ...paths);
   };
 
+  const windowRect = loadConfig('windowRect', {x: 0, y: 0, width: 1024, height: 1024});
+
   mainWindow = new BrowserWindow({
     show: false,
-    width: 1024,
-    height: 728,
+    ...windowRect,
     icon: getAssetPath('icon.png'),
     webPreferences: {
       preload: app.isPackaged ? path.join(__dirname, 'preload.js') : path.join(__dirname, '../../.erb/dll/preload.js'),
@@ -75,6 +77,13 @@ const createWindow = async () => {
       mainWindow.minimize();
     } else {
       mainWindow.show();
+    }
+  });
+
+  mainWindow.on('close', () => {
+    const rect = mainWindow?.getBounds();
+    if (rect !== undefined) {
+      saveConfig('windowRect', rect);
     }
   });
 
