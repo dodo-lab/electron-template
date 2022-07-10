@@ -12,7 +12,7 @@ import {app, BrowserWindow, shell} from 'electron';
 import path from 'path';
 import {MainMessenger} from './mainMessenger';
 import MenuBuilder from './menu';
-import {resolveHtmlPath} from './util';
+import {resolveHtmlPath} from './utils/resolveHtmlPath';
 
 let mainWindow: BrowserWindow | null = null;
 
