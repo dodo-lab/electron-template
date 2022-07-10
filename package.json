@@ -99,8 +99,8 @@
     "webpack-merge": "^5.8.0"
   },
   "build": {
-    "productName": "ElectronReact",
-    "appId": "com.ElectronReact",
+    "productName": "ElectronTemplate",
+    "appId": "org.ElectronTemplate",
     "asar": true,
     "asarUnpack": "**\\*.{node,dll}",
     "files": [
