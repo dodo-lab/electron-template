@@ -1,8 +1,6 @@
 import {IpcMainToRenderKey, IpcRenderToMainInvokeKey, IpcRenderToMainKey} from 'common/ipc';
 import {contextBridge, ipcRenderer, IpcRendererEvent} from 'electron';
 
-export type Channels = 'ipc-example';
-
 contextBridge.exposeInMainWorld('electron', {
   ipcRenderer: {
     send(channel: IpcRenderToMainKey, args: unknown[]) {
