@@ -28,6 +28,11 @@ module.exports = {
           allowReferenceFrom: [],
           allowSameModule: true,
         },
+        {
+          module: 'electron',
+          allowReferenceFrom: [...path('src/main')],
+          allowSameModule: true,
+        },
       ],
       {
         resolveRelativeImport: true,
