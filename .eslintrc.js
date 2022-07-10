@@ -21,12 +21,12 @@ module.exports = {
       [
         {
           module: 'main',
-          allowReferenceFrom: [],
+          allowReferenceFrom: [...path('src/main/**')],
           allowSameModule: true,
         },
         {
           module: 'renderer',
-          allowReferenceFrom: [],
+          allowReferenceFrom: [...path('src/renderer/**')],
           allowSameModule: true,
         },
         {
