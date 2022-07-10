@@ -1,5 +1,10 @@
+function path(p) {
+  return [p, p.replace(/\//g, '\\')];
+}
+
 module.exports = {
   extends: 'erb',
+  plugins: ['strict-dependencies'],
   rules: {
     // A temporary hack related to IDE not resolving correct package.json
     'import/no-extraneous-dependencies': 'off',
@@ -10,6 +15,24 @@ module.exports = {
     '@typescript-eslint/ban-ts-comment': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     'prettier/prettier': 'off',
+    'strict-dependencies/strict-dependencies': [
+      'error',
+      [
+        {
+          module: 'main',
+          allowReferenceFrom: [],
+          allowSameModule: true,
+        },
+        {
+          module: 'renderer',
+          allowReferenceFrom: [],
+          allowSameModule: true,
+        },
+      ],
+      {
+        resolveRelativeImport: true,
+      },
+    ],
   },
   parserOptions: {
     ecmaVersion: 2020,
