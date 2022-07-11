@@ -3,4 +3,6 @@
 ## 利用方法
 
 - ダウンロード、フォーク等での利用を想定
-- `package.json`の`productName`は必ず変更すること（electron-store の保存パスに影響する）
+- 下記ファイルは必ず更新すること
+  - `package.json`の`productName`（electron-store の保存パスに影響する）
+  - `release/app/package.json`の`name`
